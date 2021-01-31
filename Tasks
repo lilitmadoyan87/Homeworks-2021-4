@@ -15,3 +15,40 @@ function sumOfDigits(num) {
 num = 100008
 console.log(sumOfDigits(num));
 
+
+// Task 04
+// Given an object. Invert it (keys become values and values become keys). If there is more than key for that given value create an array.
+
+function replace(obj) {
+  let arr = []
+  let arr1 = []
+  for(let [key, value] of Object.entries(obj)) {
+    [key, value] = [value, key]
+    arr.push([key, value]) 
+ }
+ for(let i = 0; i < arr.length; i++) {
+   for(let j = i+1; j < arr.length; j++)
+   if(arr[i][0] === arr[j][0]) {
+     arr[j].splice(0, 1)
+     arr1 = arr[i].concat(arr[j])
+     arr.splice(i, 1, arr1)
+     arr.splice(j, 1)
+  
+   }
+    //let [name, ...rest] = arr[i]              // Miavorumy chi stacvum
+  }
+  
+  //return arr
+ return Object.fromEntries(arr)
+}
+
+
+obj = {
+  name: 1,
+  surname: 2,
+  age: 2,
+  fff: 1
+}
+
+console.log(replace(obj));
+
